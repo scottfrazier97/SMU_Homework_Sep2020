@@ -1,0 +1,89 @@
+Option Explicit
+Sub stockInfo():
+   
+    'Declarations for variables
+    Dim stockName As String
+    Dim I As Double
+    Dim stockTotal As Double
+    Dim summaryTablerow As Integer
+    Dim yearlyChange As Double
+    Dim openingPrice As Double
+    Dim closingPrice As Double
+    Dim lastRow As Double
+    Dim percentageChange As Double
+    
+    'Header names
+    Range("I1").Value = "Ticker"
+    Range("J1").Value = "Yearly Change"
+    Range("K1").Value = "Percentage Change"
+    Range("L1").Value = "Total Stock Volume"
+    
+    'Finding the last row
+    lastRow = Cells(Rows.Count, 1).End(xlUp).Row
+        
+    stockTotal = 0
+    summaryTablerow = 2
+    
+    'This is the opening price for each stock
+    openingPrice = Cells(2, 3).Value
+    
+    
+    For I = 2 To lastRow
+    
+        If Cells(I + 1, 1).Value <> Cells(I, 1).Value Then
+        
+            closingPrice = Cells(I, 6).Value
+            
+            yearlyChange = closingPrice - openingPrice
+            
+            If openingPrice = 0 Then
+            
+                percentageChange = 100 * (yearlyChange / 0.0000001)
+            
+            Else:
+            
+                percentageChange = 100 * (yearlyChange / openingPrice)
+            
+            End If
+            
+            'Setting the result to a real percentage
+            percentageChange = 100 * (yearlyChange / openingPrice)
+            
+            stockName = Cells(I, 1).Value
+            
+            stockTotal = stockTotal + Cells(I, 7).Value
+                  
+            Range("I" & summaryTablerow).Value = stockName
+            
+            Range("J" & summaryTablerow).Value = yearlyChange
+            
+            'Conditional formatting
+            If yearlyChange > 0 Then
+                Range("J" & summaryTablerow).Interior.ColorIndex = 4
+            ElseIf yearlyChange < 0 Then
+                Range("J" & summaryTablerow).Interior.ColorIndex = 3
+            Else
+                Range("J" & summaryTablerow).Interior.ColorIndex = 2
+            End If
+            
+            Range("K" & summaryTablerow).Value = percentageChange
+            
+            Range("L" & summaryTablerow).Value = stockTotal
+            
+            summaryTablerow = summaryTablerow + 1
+            
+            'Reset the stock total
+            stockTotal = 0
+            
+            openingPrice = Cells(I + 1, 3)
+        
+        Else
+        
+            stockTotal = stockTotal + Cells(I, 7).Value
+        
+        End If
+        
+    Next I
+            
+            
+End Sub
