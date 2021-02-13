@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Earthquake Data</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script type="text/javascript" src="static/js/config.js"></script>
+    <script type="text/javascript" src="static/js/logic.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <h2><u>Let's look at some earthquake data!</u></h2>
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr style="color:white; border-width: 3px;">
+    <div class="container">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Live Earthquake Filters ⏰</div>
+            <div class="card-body">
+                <select id="timeframe" style="width: 285px">
+                    <option value="all_hour">1hr | Earthquakes within the past hour.</option>
+                    <option value="all_day">1Day | Earthquakes within the past day.</option>
+                    <option value="all_week">7Days | Earthquakes within the past 7 days.</option>
+                    <option value="all_month">30Days | Earthquakes within the past 30 days.</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr style="color:lightgray; border-width: 3px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="maptitle"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="mapcontainer">
+            </div>
+        </div>
+    </div>
+    <div id="footer" style="text-align: center">
+        <p>
+            <h5>Created by someone who does not know how to code 🥴 &copy; &trade; &reg;</h5>
+        </p>
+    </div>
+
+</body>
+
+</html>
